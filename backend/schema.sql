@@ -119,22 +119,5 @@ CREATE TABLE IF NOT EXISTS alerts (
     FOREIGN KEY (location_id) REFERENCES locations(id) ON DELETE CASCADE
 );
 
--- 8. Community Reports
-CREATE TABLE IF NOT EXISTS community_reports (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT,
-    disaster_id INT,
-    location_id INT,
-    latitude FLOAT,
-    longitude FLOAT,
-    type ENUM('Hazard', 'Safety_Check') DEFAULT 'Hazard',
-    status ENUM('Pending', 'Verified', 'False', 'Safe', 'Need_Help') DEFAULT 'Pending',
-    message TEXT,
-    image_url VARCHAR(255),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL,
-    FOREIGN KEY (disaster_id) REFERENCES disasters(id) ON DELETE SET NULL,
-    FOREIGN KEY (location_id) REFERENCES locations(id) ON DELETE SET NULL
-);
 
 -- Note: users.location_id FK is added programmatically by seed.js to support re-runs.

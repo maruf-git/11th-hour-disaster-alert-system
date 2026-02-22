@@ -105,7 +105,7 @@ async function run() {
         );
 
         // ── Clear all data (FOREIGN_KEY_CHECKS off for safe truncation) ───────
-        const TABLES = ['alerts', 'alert_rules', 'earthquake_logs', 'weather_logs', 'community_reports', 'disasters', 'locations', 'users', 'admins'];
+        const TABLES = ['alerts', 'alert_rules', 'earthquake_logs', 'weather_logs', 'disasters', 'locations', 'users', 'admins'];
         await connection.query('SET FOREIGN_KEY_CHECKS = 0');
         for (const t of TABLES) {
             await connection.query(`TRUNCATE TABLE ${t}`);
